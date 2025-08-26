@@ -1,24 +1,84 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
+import Auth from "./components/Auth";
+import Habits from "./components/Habits";
+import TrackHabits from "./components/TrackHabits";
 
 function App() {
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
+
+  if (!token) {
+    return <Auth onLogin={setToken} />;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div style={{ padding: "2rem" }}>
+      <h1>Habbit Hole</h1>
+
+      {/* Navigation */}
+      <nav
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          background: "#1976d2",
+          padding: "0.75rem 1.5rem",
+          borderRadius: "6px",
+          marginBottom: "1.5rem",
+          color: "white",
+        }}
+      >
+        <div>
+          <Link
+            to="/"
+            style={{
+              marginRight: "1rem",
+              color: "white",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Habits
+          </Link>
+          <Link
+            to="/track"
+            style={{
+              color: "white",
+              textDecoration: "none",
+              fontWeight: "bold",
+            }}
+          >
+            Track Habits
+          </Link>
+        </div>
+        <button
+          style={{
+            background: "white",
+            color: "#1976d2",
+            border: "none",
+            borderRadius: "4px",
+            padding: "0.4rem 0.8rem",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+          onClick={() => {
+            localStorage.removeItem("token");
+            sessionStorage.removeItem("token");
+            localStorage.removeItem("userId"); 
+            sessionStorage.removeItem("userId");
+            setToken("");
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Logout
+        </button>
+      </nav>
+
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Habits />} />
+        <Route path="/track" element={<TrackHabits />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </div>
   );
 }

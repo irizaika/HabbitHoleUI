@@ -1,0 +1,7 @@
+* text=auto
+*.js diff=javascript
+*.ts diff=typescript
+*.jsx diff=javascript
+*.tsx diff=typescript
+*.css diff=css
+*.scss diff=scss

@@ -36,3 +36,44 @@
     transform: rotate(360deg);
   }
 }
+
+
+.app-container {
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1976d2;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.navbar a {
+  margin-right: 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a:last-child {
+  margin-right: 0;
+}
+
+.logout-btn {
+  background: white;
+  color: #1976d2;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+}
